@@ -1,0 +1,6 @@
+rootProject.name = 'blocks2'
+include 'users'
+include 'eureka'
+include 'score'
+include 'common'
+
