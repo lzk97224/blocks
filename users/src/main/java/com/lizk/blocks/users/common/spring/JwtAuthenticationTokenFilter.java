@@ -40,7 +40,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader(JWTUtil.JwtHeader);
         if (!Objects.isNull(token) && !ObjectUtils.isEmpty(token)) {
 
             //1解析token
@@ -50,14 +50,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             String username = claims.getId();
 
             User user = new User();
-            user.setUsername("123");
-            user.setPassword("123");
+//            user.setUsername("123");
+//            user.setPassword("123");
 
             //2封装Authentication
-            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken
-                    = new UsernamePasswordAuthenticationToken(user, null, null);
-            System.out.println(usernamePasswordAuthenticationToken);
-            //5存入SecurityContextHolder
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user, null, null);
+//
+//            //5存入SecurityContextHolder
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
         }
 
